@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="PokeBank.App.MainWindow"
+        Title="PokeBank — banco para partidas de emulador"
+        Icon="/Assets/icono.ico"
+        Width="1440" Height="900" MinWidth="1000" MinHeight="600">
+  <DockPanel Margin="12">
+    <!-- Barra superior: carpeta de partidas y cuántos paneles mostrar -->
+    <Grid DockPanel.Dock="Top" Margin="0,0,0,10" ColumnDefinitions="Auto,*,Auto,Auto">
+      <Button x:Name="OpenFolderButton" Content="Abrir carpeta de partidas…" />
+      <TextBlock x:Name="FolderText" Grid.Column="1" Margin="10,0" VerticalAlignment="Center"
+                 Opacity="0.8" TextTrimming="CharacterEllipsis" Text="Ninguna carpeta elegida" />
+      <TextBlock Grid.Column="2" Text="Partidas visibles:" VerticalAlignment="Center" Margin="0,0,6,0" />
+      <ComboBox x:Name="PanelCountCombo" Grid.Column="3" Width="70" />
+    </Grid>
+
+    <Border DockPanel.Dock="Bottom" Margin="0,10,0,0" Padding="8" CornerRadius="4" Background="#22888888">
+      <TextBlock x:Name="StatusText" TextWrapping="Wrap"
+                 Text="Cierra el juego en el emulador antes de mover Pokémon: el emulador sobrescribe el .sav al guardar. Usa Ctrl o Shift para seleccionar varios." />
+    </Border>
+
+    <Grid ColumnDefinitions="*,12,360">
+      <!-- Los paneles de partida se agregan desde el código (1 a 4) -->
+      <UniformGrid x:Name="SavesGrid" Grid.Column="0" />
+
+      <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="6" Padding="8">
+        <DockPanel>
+          <StackPanel DockPanel.Dock="Top" Spacing="4">
+            <TextBlock Text="Banco" FontSize="15" FontWeight="Bold" />
+            <TextBlock x:Name="BankInfo" Opacity="0.8" TextWrapping="Wrap" />
+          </StackPanel>
+
+          <Grid DockPanel.Dock="Bottom" Margin="0,6,0,0" ColumnDefinitions="*,6,*">
+            <Button x:Name="EditBankButton" Grid.Column="0" Content="Editar" HorizontalAlignment="Stretch" />
+            <Button x:Name="DeleteButton" Grid.Column="2" Content="Liberar" HorizontalAlignment="Stretch" />
+          </Grid>
+
+          <ListBox x:Name="BankList" Margin="0,6,0,0" SelectionMode="Multiple">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <Image Source="{Binding Sprite}" Width="36" Height="36"
+                         RenderOptions.BitmapInterpolationMode="None" />
+                  <TextBlock Text="{Binding Text}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </DockPanel>
+</Window>

@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="PokeBank.App.SavePanel">
+  <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="6" ClipToBounds="True">
+    <Panel>
+      <!-- Fondo: degradado con los colores del juego, imagen propia opcional y el nombre del juego de marca de agua -->
+      <Border x:Name="ThemeGradient" Opacity="0.30" IsHitTestVisible="False" />
+      <Image x:Name="BackgroundImage" Stretch="UniformToFill" Opacity="0.28" IsHitTestVisible="False" />
+      <TextBlock x:Name="WatermarkText" FontSize="44" FontWeight="Black" Opacity="0.10"
+                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,48"
+                 TextWrapping="Wrap" TextAlignment="Right" IsHitTestVisible="False" />
+
+      <DockPanel Margin="8">
+        <StackPanel DockPanel.Dock="Top" Spacing="6">
+          <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+            <TextBlock x:Name="HeaderText" FontSize="15" FontWeight="Bold" Text="Partida" VerticalAlignment="Center" />
+            <ComboBox x:Name="SaveCombo" Grid.Column="1" Margin="8,0" HorizontalAlignment="Stretch"
+                      PlaceholderText="Elegir partida de la carpeta…" IsEnabled="False" />
+            <Button x:Name="OpenButton" Grid.Column="2" Content="Archivo…" ToolTip.Tip="Abrir un archivo de partida suelto" />
+            <Button x:Name="BackgroundButton" Grid.Column="3" Margin="6,0,0,0" Content="Fondo…" IsEnabled="False"
+                    ToolTip.Tip="Elegir una imagen de fondo para este juego (se usa en todas sus partidas)" />
+          </Grid>
+          <TextBlock x:Name="TitleText" Text="Sin partida abierta" TextWrapping="Wrap" Opacity="0.85" />
+          <ComboBox x:Name="BoxCombo" HorizontalAlignment="Stretch" IsEnabled="False" />
+        </StackPanel>
+
+        <Grid DockPanel.Dock="Bottom" Margin="0,6,0,0" ColumnDefinitions="*,6,*,6,*,6,*">
+          <Button x:Name="ToBankButton" Grid.Column="0" Content="→ Banco" HorizontalAlignment="Stretch"
+                  ToolTip.Tip="Enviar los Pokémon seleccionados al banco" IsEnabled="False" />
+          <Button x:Name="FromBankButton" Grid.Column="2" Content="← Traer" HorizontalAlignment="Stretch"
+                  ToolTip.Tip="Traer los Pokémon seleccionados en el banco a esta partida" IsEnabled="False" />
+          <Button x:Name="EditButton" Grid.Column="4" Content="Editar" HorizontalAlignment="Stretch" IsEnabled="False" />
+          <Button x:Name="CreateButton" Grid.Column="6" Content="Crear" HorizontalAlignment="Stretch" IsEnabled="False" />
+        </Grid>
+
+        <ListBox x:Name="SlotList" Margin="0,6,0,0" SelectionMode="Multiple" Background="Transparent">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="6">
+                <Image Source="{Binding Sprite}" Width="36" Height="36"
+                       RenderOptions.BitmapInterpolationMode="None" />
+                <TextBlock Text="{Binding Text}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </DockPanel>
+    </Panel>
+  </Border>
+</UserControl>

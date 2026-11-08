@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>PokeBank.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Motor de lectura/escritura de partidas (GPL-3.0) -->
+    <PackageReference Include="PKHeX.Core" Version="26.10.18" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>PokeBank.App</RootNamespace>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+
+    <!-- El ejecutable se llama PokeBank.exe y usa el ícono de la app -->
+    <AssemblyName>PokeBank</AssemblyName>
+    <Product>PokeBank</Product>
+    <AssemblyTitle>PokeBank — banco para partidas de emulador</AssemblyTitle>
+    <Version>1.0.0</Version>
+    <ApplicationIcon>Assets\icono.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.22" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.22" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PokeBank.Core\PokeBank.Core.csproj" />
+  </ItemGroup>
+
+</Project>

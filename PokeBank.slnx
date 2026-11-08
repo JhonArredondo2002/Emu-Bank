@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/PokeBank.Core/PokeBank.Core.csproj" />
+  <Project Path="src/PokeBank.App/PokeBank.App.csproj" />
+</Solution>

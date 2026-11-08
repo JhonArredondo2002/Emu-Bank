@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="PokeBank.App.EditorWindow"
+        Title="Editar Pokémon"
+        Icon="/Assets/icono.ico"
+        Width="820" Height="720" MinWidth="640" MinHeight="480"
+        WindowStartupLocation="CenterOwner">
+  <Window.Styles>
+    <Style Selector="Grid.form > :is(Control)">
+      <Setter Property="Margin" Value="4" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style Selector="TextBlock.section">
+      <Setter Property="FontSize" Value="15" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Margin" Value="0,8,0,2" />
+    </Style>
+  </Window.Styles>
+
+  <DockPanel Margin="12">
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,10,0,0">
+      <Button x:Name="CancelButton" Content="Cancelar" />
+      <Button x:Name="SaveButton" Content="Guardar cambios" Classes="accent" />
+    </StackPanel>
+
+    <ScrollViewer>
+      <StackPanel Spacing="4" Margin="0,0,12,0">
+
+        <!-- Cabecera: sprite + datos principales -->
+        <Grid ColumnDefinitions="Auto,*">
+          <Border Width="120" Height="120" CornerRadius="8" Background="#22888888" VerticalAlignment="Top">
+            <Image x:Name="SpriteImage" Width="112" Height="112" RenderOptions.BitmapInterpolationMode="None" />
+          </Border>
+
+          <Grid Grid.Column="1" Classes="form" Margin="8,0,0,0"
+                ColumnDefinitions="Auto,*,Auto,*" RowDefinitions="Auto,Auto,Auto,Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Especie" />
+            <ComboBox x:Name="SpeciesCombo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" MaxDropDownHeight="400" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Mote" />
+            <TextBox x:Name="NicknameBox" Grid.Row="0" Grid.Column="3" Watermark="(sin mote)" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Nivel" />
+            <NumericUpDown x:Name="LevelBox" Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="100" Increment="1" FormatString="0" />
+            <TextBlock x:Name="NatureLabel" Grid.Row="1" Grid.Column="2" Text="Naturaleza" />
+            <ComboBox x:Name="NatureCombo" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" />
+
+            <TextBlock x:Name="ItemLabel" Grid.Row="2" Grid.Column="0" Text="Objeto" />
+            <ComboBox x:Name="ItemCombo" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" MaxDropDownHeight="400" />
+            <TextBlock x:Name="AbilityLabel" Grid.Row="2" Grid.Column="2" Text="Habilidad" />
+            <TextBlock x:Name="AbilityText" Grid.Row="2" Grid.Column="3" />
+
+            <CheckBox x:Name="ShinyCheck" Grid.Row="3" Grid.Column="1" Content="Shiny ★" />
+            <TextBlock x:Name="InfoText" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Opacity="0.75" TextWrapping="Wrap" />
+          </Grid>
+        </Grid>
+
+        <!-- Movimientos -->
+        <TextBlock Classes="section" Text="Movimientos" />
+        <Grid Classes="form" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+          <ComboBox x:Name="Move1Combo" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" MaxDropDownHeight="400" />
+          <ComboBox x:Name="Move2Combo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" MaxDropDownHeight="400" />
+          <ComboBox x:Name="Move3Combo" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" MaxDropDownHeight="400" />
+          <ComboBox x:Name="Move4Combo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" MaxDropDownHeight="400" />
+          <Button x:Name="SuggestMovesButton" Grid.Row="2" Grid.Column="0" Content="Movimientos sugeridos por nivel" />
+        </Grid>
+
+        <!-- Estadísticas: las filas se generan en el código -->
+        <TextBlock Classes="section" Text="Estadísticas" />
+        <Grid x:Name="StatsGrid" Classes="form" ColumnDefinitions="110,130,130,*" />
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <TextBlock x:Name="EvTotalText" VerticalAlignment="Center" />
+          <Button x:Name="MaxIvButton" Content="IVs al máximo" />
+          <Button x:Name="ClearEvButton" Content="Reiniciar EVs" />
+        </StackPanel>
+
+        <!-- Evolución -->
+        <TextBlock Classes="section" Text="Evolución" />
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <ComboBox x:Name="EvoCombo" MinWidth="240" />
+          <Button x:Name="EvolveButton" Content="Evolucionar" />
+          <TextBlock x:Name="EvoInfoText" VerticalAlignment="Center" Opacity="0.75" />
+        </StackPanel>
+
+        <!-- Legalidad -->
+        <TextBlock Classes="section" Text="Legalidad (análisis de PKHeX)" />
+        <TextBlock x:Name="LegalText" FontWeight="Bold" />
+        <Expander Header="Ver informe" HorizontalAlignment="Stretch">
+          <SelectableTextBlock x:Name="ReportText" TextWrapping="Wrap" FontFamily="Consolas,Menlo,monospace" />
+        </Expander>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Window>
